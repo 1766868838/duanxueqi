@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.LoginService;
@@ -11,7 +11,7 @@ import jakarta.annotation.Resource;
 /**
  * 登录控制类
  */
-@Controller
+@RestController
 
 public class LoginController {
     
@@ -28,10 +28,25 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/login")
-    public boolean login(String username,String password){
+    public boolean login(double cardNum,String password){
         
+        if(loginService.login(cardNum, password)){
+            return true;
+        }
 
+        return false;
+    }
 
+    /**
+     * 登录
+     * @return
+     */
+    @RequestMapping("/regist")
+    public boolean regist(double cardNum,String username,String password,String phoneNum,int gender){
+
+        if(loginService.regist(cardNum, username, password, phoneNum, gender)){
+            return true;
+        }
         return false;
     }
 
