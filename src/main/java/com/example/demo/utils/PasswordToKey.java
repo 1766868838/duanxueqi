@@ -13,6 +13,12 @@ public class PasswordToKey{
     private static final int KEY_LENGTH = 16; // 密钥长度
     private static final String HASH_ALGORITHM = "SHA-256"; // 哈希算法
 
+
+    /**
+     * 加密函数
+     * @param p
+     * @return
+     */
     public static String main(String p) {
 
         Security.addProvider(new BouncyCastleProvider());
@@ -33,6 +39,9 @@ public class PasswordToKey{
 
     }
 
+    /**
+     * 解密函数
+     */
     public static String decrypt(String p , byte[] salt){
         String password = p; // 用户输入的口令
         byte[] hashedKey = hashKey(password, salt); // 哈希口令和盐得到密钥
@@ -67,7 +76,7 @@ public class PasswordToKey{
     }
 
     /**
-     * 
+     * 字节数组转十六进制字符串
      * @param bytes[]
      * @return 十六进制字符串
      */
@@ -79,6 +88,11 @@ public class PasswordToKey{
         return builder.toString();
     }
 
+    /**
+     * 十六进制字符串转字节数组
+     * @param str
+     * @return
+     */
     public static byte[] hexStringToBytes(String str){
         byte[] bytes = new byte[str.length() / 2];
         for (int i = 0; i < bytes.length; i++) {
