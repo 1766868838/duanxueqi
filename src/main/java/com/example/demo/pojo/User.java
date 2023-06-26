@@ -3,6 +3,7 @@ package com.example.demo.pojo;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
 import lombok.Data;
@@ -35,7 +36,7 @@ public class User implements Serializable{
         this.gender = gender;
         this.borrowing = borrowing;
     }
-    @TableField("card_num")
+    @TableId("card_num")
     private double cardNum;
 
     @TableField("user_name")

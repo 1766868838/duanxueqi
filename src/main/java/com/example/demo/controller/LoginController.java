@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.mapper.UserMapper;
 import com.example.demo.service.LoginService;
 
 import jakarta.annotation.Resource;
@@ -14,9 +13,6 @@ import jakarta.annotation.Resource;
 @RestController
 
 public class LoginController {
-    
-    @Resource
-    public UserMapper userMapper;
 
     @Resource
     public LoginService loginService;
