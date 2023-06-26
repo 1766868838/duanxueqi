@@ -18,22 +18,22 @@ public class Book {
     @TableId("ID")
     private Integer id;
     @TableField("book_name")
-    private String bookName;
+    private String book_name;
     public Book(Integer id, String bookName, String bookType, String author, float price, String language, String press,
             Date publicationDate, String introduce, int is_borrow) {
         this.id = id;
-        this.bookName = bookName;
-        this.bookType = bookType;
+        this.book_name = bookName;
+        this.book_type = bookType;
         this.author = author;
         this.price = price;
         this.language = language;
         this.press = press;
-        this.publicationDate = publicationDate;
+        this.publication_date = publicationDate;
         this.introduce = introduce;
         this.is_borrow = is_borrow;
     }
     @TableField("book_type")
-    private String bookType;
+    private String book_type;
     @TableField("author")
     private String author;
     @TableField("price")
@@ -43,7 +43,7 @@ public class Book {
     @TableField("press")
     private String press;
     @TableField("publication_date")
-    private Date publicationDate;
+    private Date publication_date;
     @TableField("introduce")
     private String introduce;
     @TableField("is_borrow")

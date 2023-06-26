@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.pojo.Book;
 import com.example.demo.service.BookService;
 
 import jakarta.annotation.Resource;
@@ -10,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -38,7 +40,7 @@ public class BookController {
      * @param is_borrow
      * @return
      */
-    @RequestMapping("addBook")
+    /* @RequestMapping("addBook")
     public boolean addBook(Integer id,String book_name,String book_type,
     String author,float price,String language,String press,String publication_date,
     String introduce,int is_borrow){
@@ -54,7 +56,19 @@ public class BookController {
             e.printStackTrace();
             return false;
         }
-  
+    } */
+
+    @RequestMapping("addBook")
+    public boolean addBook(@RequestBody Book book){
+        try {
+            if(bookService.addBook(book)){
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
     
     @RequestMapping("deleteById")
@@ -81,4 +95,6 @@ public class BookController {
             return false;
         }
     }
+
+
 }

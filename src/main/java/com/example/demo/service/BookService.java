@@ -28,11 +28,21 @@ public class BookService {
      * @param is_borrow
      * @return
      */
-    public boolean addBook(Integer id, String book_name, String book_type,
+    /* public boolean addBook(Integer id, String book_name, String book_type,
      String author, float price, String language, String press,
       Date publication_date, String introduce,int is_borrow){
         try {
             Book book = new Book(id,book_name,book_type,author,price,language,press,publication_date,introduce,is_borrow);
+            bookMapper.insert(book);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    } */
+
+    public boolean addBook(Book book){
+        try {
             bookMapper.insert(book);
             return true;
         } catch (Exception e) {
@@ -83,5 +93,5 @@ public class BookService {
             return false;
         }
     }
-    
+
 }
