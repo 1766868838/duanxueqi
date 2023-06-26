@@ -49,25 +49,5 @@ public class LoginService {
 
     }
 
-
-    /**
-     * 注册
-     * @param username
-     * @param password
-     * @return
-     */
-    public boolean regist(Double cardNum,String username,String password,String phoneNum,int gender){
-        
-        try {
-            password = PasswordToKey.main(password);
-            User user2 = new User(username,password,cardNum,phoneNum,gender);
-            userMapper.insert(user2);
-            return true;
-
-        } catch (Exception e) {
-            System.out.println(e);
-            return false;
-        }
-        
-    }
+    
 }
