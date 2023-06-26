@@ -26,7 +26,7 @@ public class User implements Serializable{
         this.gender = gender;
         this.borrowing = 0;
     }
-        public User(Double cardNum,String username, String password, String phoneNum,int identity,int gender,int borrowing) {
+    public User(Double cardNum,String username, String password, String phoneNum,int identity,int gender,int borrowing) {
         this.username = username;
         this.password = password;       
         this.cardNum = cardNum;
