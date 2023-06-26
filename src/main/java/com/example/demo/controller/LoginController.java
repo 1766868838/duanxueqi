@@ -33,17 +33,6 @@ public class LoginController {
         return false;
     }
 
-    /**
-     * 登录
-     * @return
-     */
-    @RequestMapping("/regist")
-    public boolean regist(double cardNum,String username,String password,String phoneNum,int gender){
 
-        if(loginService.regist(cardNum, username, password, phoneNum, gender)){
-            return true;
-        }
-        return false;
-    }
 
 }

@@ -41,6 +41,11 @@ public class BookService {
         }
     }
 
+    /**
+     * 通过id删除指定图书
+     * @param id
+     * @return
+     */
     public boolean deleteById(Integer id){
         try {
             bookMapper.deleteById(id);
@@ -48,7 +53,35 @@ public class BookService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }
-        
+        }      
     }
+
+    /**
+     * 修改图书信息
+     * @param id
+     * @param book_name
+     * @param book_type
+     * @param author
+     * @param price
+     * @param language
+     * @param press
+     * @param publication_date
+     * @param introduce
+     * @param is_borrow
+     * @return
+     */
+    public boolean update(Integer id, String book_name, String book_type,
+     String author, float price, String language, String press,
+      Date publication_date, String introduce,int is_borrow){
+
+        try {
+            Book book = new Book(id,book_name,book_type,author,price,language,press,publication_date,introduce,is_borrow);
+            bookMapper.updateById(book);
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+    
 }

@@ -18,12 +18,12 @@ public class User implements Serializable{
         this.username = username;
         this.password = password;
     }
-    public User(String username, String password, Double cardNum, String phoneNum,int gender) {
+    public User(String username, String password, Double cardNum, String phoneNum,int gender,int identity) {
         this.username = username;
         this.password = password;       
         this.cardNum = cardNum;
         this.phoneNum = phoneNum;
-        this.identity = 0;
+        this.identity = identity;
         this.gender = gender;
         this.borrowing = 0;
     }
