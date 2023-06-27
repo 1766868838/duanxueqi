@@ -1,7 +1,10 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.pojo.User;
 import com.example.demo.utils.PasswordToKey;
@@ -19,7 +22,7 @@ public class UserService {
      * @param password
      * @return
      */
-    public boolean addReader(Double cardNum,String username,String password,String phoneNum,int gender){
+    public boolean addReader(String cardNum,String username,String password,String phoneNum,int gender){
         
         try {
             password = PasswordToKey.main(password);
@@ -43,7 +46,7 @@ public class UserService {
      * @param gender
      * @return
      */
-    public boolean addManager(Double cardNum,String username,String password,String phoneNum,int gender){
+    public boolean addManager(String cardNum,String username,String password,String phoneNum,int gender){
         
         try {
             password = PasswordToKey.main(password);
@@ -56,5 +59,25 @@ public class UserService {
             return false;
         }
         
+    }
+
+    /**
+     * 查询读者信息
+     * @return
+     */
+    public List<User> selectReader(){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.le("identity_type",1);//小于等于1代表读者
+        return userMapper.selectList(null);
+    }
+
+    /**
+     * 查询图书管理员信息
+     * @return
+     */
+    public List<User> selectManager(){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("identity_type",2);//等于2代表图书管理员
+        return userMapper.selectList(queryWrapper);
     }
 }

@@ -9,7 +9,9 @@ import jakarta.annotation.Resource;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -78,7 +80,21 @@ public class BookController {
     }
 
     @RequestMapping("update")
-    public boolean update(Integer id,String book_name,String book_type,
+    public boolean update(@RequestBody Book book){
+
+        try {
+            if(bookService.update(book)){
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    /* public boolean update(Integer id,String book_name,String book_type,
     String author,float price,String language,String press,String publication_date,
     String introduce,int is_borrow){
 
@@ -94,7 +110,23 @@ public class BookController {
             e.printStackTrace();
             return false;
         }
+    } */
+
+    /**
+     * 查找所有图书控制类
+     * @return List 图书列表
+     */
+    @RequestMapping("select")
+    public List<Book> select(){
+        return bookService.select();
     }
 
-
+    /**
+     * 查找未被借走图书的控制类
+     * @return List 图书列表
+     */
+    @RequestMapping("selectUn")
+    public List<Book> selectUn(){
+        return bookService.selectUn();
+    }
 }

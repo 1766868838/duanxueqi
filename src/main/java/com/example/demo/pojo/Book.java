@@ -11,6 +11,16 @@ import lombok.Data;
 
 /**
  * 图书实体类
+ * @param id 图书id
+ * @param bookName 书名
+ * @param bookType 类别
+ * @param author 作者
+ * @param price 价格
+ * @param language 语言
+ * @param press 出版社
+ * @param publicationDate 出版日期
+ * @param introduce 图书介绍
+ * @param is_borrow 是否借阅
  */
 @Data
 @TableName("books")

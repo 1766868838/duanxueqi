@@ -5,7 +5,10 @@ import org.apache.ibatis.annotations.Mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.demo.pojo.Book;
 
+/**
+ * 图书mapper类，操作数据库
+ */
 @Mapper
 public interface BookMapper extends BaseMapper<Book>{
-    
+
 }
