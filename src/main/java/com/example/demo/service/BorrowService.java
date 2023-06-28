@@ -1,12 +1,16 @@
 package com.example.demo.service;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.mapper.BorrowMapper;
 import com.example.demo.pojo.Borrow;
-
+import com.example.demo.pojo.UJoinB;
+import com.github.yulichang.query.MPJQueryWrapper;
+import com.example.demo.pojo.Book;
 import jakarta.annotation.Resource;
 
 @Service
@@ -38,6 +42,22 @@ public class BorrowService {
         } catch (Exception e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public List<UJoinB> selectBorrow(String card_num){
+        
+        try {
+            MPJQueryWrapper<Borrow> wrapper = new MPJQueryWrapper<Borrow>().select("t.borrow_date")
+                .select("b.book_name","b.book_type","b.author","b.press")
+                .leftJoin("books b on t.book_id = b.id")
+                .eq("card_num",card_num);
+
+            List<UJoinB> list = borrowMapper.selectJoinList(UJoinB.class,wrapper);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

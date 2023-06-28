@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.pojo.User;
 import com.example.demo.utils.PasswordToKey;
@@ -22,7 +23,7 @@ public class UserService {
      * @param password
      * @return
      */
-    public boolean addReader(String cardNum,String username,String password,String phoneNum,int gender){
+    /* public boolean addReader(String cardNum,String username,String password,String phoneNum,int gender){
         
         try {
             password = PasswordToKey.main(password);
@@ -30,6 +31,18 @@ public class UserService {
             userMapper.insert(user);
             return true;
 
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        
+    } */
+    public boolean addReader(User user){
+        
+        try {
+            user.setPassword(PasswordToKey.main(user.getPassword()));
+            userMapper.insert(user);
+            return true;
         } catch (Exception e) {
             System.out.println(e);
             return false;
@@ -68,7 +81,7 @@ public class UserService {
     public List<User> selectReader(){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.le("identity_type",1);//小于等于1代表读者
-        return userMapper.selectList(null);
+        return userMapper.selectList(queryWrapper);
     }
 
     /**
@@ -79,5 +92,23 @@ public class UserService {
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("identity_type",2);//等于2代表图书管理员
         return userMapper.selectList(queryWrapper);
+    }
+
+    public User selectOne(String cardNum){
+        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("card_num",cardNum);//小于等于1代表读者
+        return userMapper.selectOne(queryWrapper);
+    }
+
+    public boolean updateOne(User user){
+        try {
+            UpdateWrapper<User> updateWrapper = new UpdateWrapper<>(user);
+            updateWrapper.eq("card_num", user.getCardNum().toString());
+            userMapper.update(user, updateWrapper);
+            return true;
+        } catch (Exception e) {
+            // TODO: handle exception
+            return false;
+        }
     }
 }

@@ -16,13 +16,19 @@ import lombok.Data;
 @Data
 @TableName("user")
 public class User implements Serializable{
-    public User(Integer id, String cardNum,String username, String phoneNum,int identity,int gender,int borrowing) {
-        this.username = username;
+    public User(){}
+    public User(String cardNum, String username, String nickname, String email, String college, String password,
+            String phoneNum, int identity, int borrowing, int gender) {
         this.cardNum = cardNum;
+        this.username = username;
+        this.nickname = nickname;
+        this.email = email;
+        this.college = college;
+        this.password = password;
         this.phoneNum = phoneNum;
         this.identity = identity;
-        this.gender = gender;
         this.borrowing = borrowing;
+        this.gender = gender;
     }
     public User(String username, String password, String cardNum, String phoneNum,int gender,int identity) {
         this.username = username;
@@ -42,6 +48,22 @@ public class User implements Serializable{
         this.gender = gender;
         this.borrowing = borrowing;
     }
+
+    public User(Integer id, String cardNum, String username, String nickname, String email, String college,
+            String password, String phoneNum, int identity, int borrowing, int gender) {
+        this.id = id;
+        this.cardNum = cardNum;
+        this.username = username;
+        this.nickname = nickname;
+        this.email = email;
+        this.college = college;
+        this.password = password;
+        this.phoneNum = phoneNum;
+        this.identity = identity;
+        this.borrowing = borrowing;
+        this.gender = gender;
+    }
+
     @TableId(value = "id" , type = IdType.AUTO)
     private Integer id;
 
@@ -51,7 +73,14 @@ public class User implements Serializable{
     @TableField("user_name")
     private String username;
 
-    @TableField(value = "password",select = false)
+    @TableField("nick_name")
+    private String nickname;
+    @TableField("email")
+    private String email;
+    @TableField("college")
+    private String college;
+
+    @TableField(value = "password")
     private String password;
 
     @TableField("phone_num")

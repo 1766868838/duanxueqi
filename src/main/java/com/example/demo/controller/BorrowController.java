@@ -1,12 +1,14 @@
 package com.example.demo.controller;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.pojo.Borrow;
+import com.example.demo.pojo.UJoinB;
 import com.example.demo.service.BorrowService;
 
 import jakarta.annotation.Resource;
@@ -32,6 +34,10 @@ public class BorrowController {
         return false;
     }
 
+    @RequestMapping("selectBorrow")
+    public List<UJoinB> selectBorrow(String card_num){
+        return borrowService.selectBorrow(card_num);
+    }
     /* public boolean borrow(String book_name,int book_id,double card_num,String borrow_name,
     String borrow_date,String return_date,String return_type){
         Timestamp borrowDate = Timestamp.valueOf(borrow_date);

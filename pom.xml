@@ -107,6 +107,12 @@
             <artifactId>bcprov-ext-jdk15on</artifactId>
             <version>1.70</version>
         </dependency>
+		<!-- mybatis-plus连表查询 -->
+		<dependency>
+     		<groupId>com.github.yulichang</groupId>
+			<artifactId>mybatis-plus-join-boot-starter</artifactId>
+		<version>1.4.4.1</version>
+</dependency> 
 
 	</dependencies>
 

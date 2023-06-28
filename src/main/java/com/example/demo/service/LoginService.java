@@ -25,7 +25,7 @@ public class LoginService {
      * @param password
      * @return
      */
-    public boolean login(Double cardNum,String password){
+    public User login(Double cardNum,String password,int identityType){
         try {
             QueryWrapper<User> queryWrapper =  new QueryWrapper<>();
             queryWrapper.eq("card_num",cardNum);
@@ -37,14 +37,14 @@ public class LoginService {
 
             String newKey = PasswordToKey.decrypt(password,salt);
             String oldKey = user.getPassword();
-            if(newKey.equals(oldKey)){
+            if(newKey.equals(oldKey)&&identityType==user.getIdentity()){
                 //密码正确，登录界面
-                return true;
+                return user;
             }
-            return false;
+            return null;
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
+            //System.out.println(e.getMessage());
+            return null;
         }
 
     }

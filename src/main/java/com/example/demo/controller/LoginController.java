@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.pojo.User;
 import com.example.demo.service.LoginService;
 
 import jakarta.annotation.Resource;
@@ -11,7 +12,6 @@ import jakarta.annotation.Resource;
  * 登录控制类
  */
 @RestController
-
 public class LoginController {
 
     @Resource
@@ -24,15 +24,14 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/login")
-    public boolean login(double cardNum,String password){
-        
-        if(loginService.login(cardNum, password)){
-            return true;
+    public User login(double card_num,String password,int identity_type){
+        try {
+            return loginService.login(card_num, password,identity_type);
+        } catch (Exception e) {
+            //System.out.println(e.getMessage());
+            return null;
         }
 
-        return false;
     }
-
-    
 
 }
