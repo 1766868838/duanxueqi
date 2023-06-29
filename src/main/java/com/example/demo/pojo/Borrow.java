@@ -24,48 +24,77 @@ import lombok.Data;
 public class Borrow {
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
-    @TableField("book_name")
-    private String book_name;
     @TableField("book_id")
-    private Integer book_id;
+    private int bookId;
+    @TableField("book_name")
+    private String bookName;
     @TableField("card_num")
-    private String card_num;
+    private String cardNum;
     @TableField("borrow_name")
-    private String borrow_name;
+    private String borrowName;
     @TableField("borrow_date")
-    private Timestamp borrow_date;
+    private Timestamp borrowDate;
     @TableField("return_date")
-    private Timestamp return_date;
+    private Timestamp returnDate;
     @TableField("return_type")
-    private String return_type;
+    private String returnType;
 
-    public Borrow(Integer id,String book_name,Integer book_id ,String card_num, String borrow_name, Timestamp borrow_date,
+    public Borrow(Integer id,int book_id ,String book_name,String card_num, String borrow_name, Timestamp borrow_date,
             Timestamp return_date, String return_type) {
         this.id = id;
-        this.book_name = book_name;
-        this.book_id = book_id;
-        this.card_num = card_num;
-        this.borrow_name = borrow_name;
-        this.borrow_date = borrow_date;
-        this.return_date = return_date;
-        this.return_type = return_type;
+        this.bookName = book_name;
+        this.bookId = book_id;
+        this.cardNum = card_num;
+        this.borrowName = borrow_name;
+        this.borrowDate = borrow_date;
+        this.returnDate = return_date;
+        this.returnType = return_type;
     }
 
+    public Borrow(){}
 
-    public Borrow(String book_name,int book_id ,String card_num, String borrow_name, Timestamp borrow_date,
-            Timestamp return_date, String return_type) {
-        this.book_name = book_name;
-        this.book_id = book_id;
-        this.card_num = card_num;
-        this.borrow_name = borrow_name;
-        this.borrow_date = borrow_date;
-        this.return_date = return_date;
-        this.return_type = return_type;
+    public Borrow(Integer id,String book_name,int book_id ,String card_num, String borrow_name, Timestamp borrow_date,
+            Timestamp return_date) {
+        this.id = id;
+        this.bookName = book_name;
+        this.bookId = book_id;
+        this.cardNum = card_num;
+        this.borrowName = borrow_name;
+        this.borrowDate = borrow_date;
+        this.returnDate = return_date;
     }
+    public Borrow(Integer id,String book_name,int book_id ,String card_num, String borrow_name, Timestamp borrow_date) {
+        this.id = id;
+        this.bookName = book_name;
+        this.bookId = book_id;
+        this.cardNum = card_num;
+        this.borrowName = borrow_name;
+        this.borrowDate = borrow_date;
+    }
+
+    public Borrow(String book_name,int book_id ,String card_num, String borrow_name, Timestamp borrow_date) {
+        this.bookName = book_name;
+        this.bookId = book_id;
+        this.cardNum = card_num;
+        this.borrowName = borrow_name;
+        this.borrowDate = borrow_date;
+    }
+
     public Borrow(String book_name,int book_id ,String card_num, Timestamp borrow_date) {
-        this.book_name = book_name;
-        this.book_id = book_id;
-        this.card_num = card_num;
-        this.borrow_date = borrow_date;
+        this.bookName = book_name;
+        this.bookId = book_id;
+        this.cardNum = card_num;
+        this.borrowDate = borrow_date;
+    }
+
+    public Borrow(String book_name, int book_id, String card_num, String borrow_name, Timestamp borrow_date,
+            Timestamp return_date, String return_type) {
+
+        this.bookName = book_name;
+        this.bookId = book_id;
+        this.cardNum = card_num;
+        this.borrowName = borrow_name;
+        this.borrowDate = borrow_date;
+        this.returnDate = return_date;
     }
 }

@@ -7,10 +7,7 @@ import com.example.demo.service.BookService;
 
 import jakarta.annotation.Resource;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestBody;
@@ -62,6 +59,7 @@ public class BookController {
 
     @RequestMapping("addBook")
     public boolean addBook(@RequestBody Book book){
+        System.out.println(book);
         try {
             if(bookService.addBook(book)){
                 return true;
@@ -81,7 +79,7 @@ public class BookController {
 
     @RequestMapping("update")
     public boolean update(@RequestBody Book book){
-
+        System.out.println(book);
         try {
             if(bookService.update(book)){
                 return true;

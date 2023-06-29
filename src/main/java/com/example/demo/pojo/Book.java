@@ -5,6 +5,7 @@ import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 
@@ -25,25 +26,26 @@ import lombok.Data;
 @Data
 @TableName("books")
 public class Book {
-    @TableId("BID")
-    private Integer id;
-    @TableField("book_name")
-    private String book_name;
+
     public Book(Integer id, String bookName, String bookType, String author, float price, String language, String press,
             Date publicationDate, String introduce, int is_borrow) {
         this.id = id;
-        this.book_name = bookName;
-        this.book_type = bookType;
+        this.bookName = bookName;
+        this.bookType = bookType;
         this.author = author;
         this.price = price;
         this.language = language;
         this.press = press;
-        this.publication_date = publicationDate;
+        this.publicationDate = publicationDate;
         this.introduce = introduce;
-        this.is_borrow = is_borrow;
+        this.isBorrow = is_borrow;
     }
+    @TableId("BID")
+    private Integer id;
+    @TableField("book_name")
+    private String bookName;
     @TableField("book_type")
-    private String book_type;
+    private String bookType;
     @TableField("author")
     private String author;
     @TableField("price")
@@ -53,9 +55,10 @@ public class Book {
     @TableField("press")
     private String press;
     @TableField("publication_date")
-    private Date publication_date;
+    @JsonFormat(locale="zh", timezone="GMT+8", pattern="YYYY-MM-DD")
+    private Date publicationDate;
     @TableField("introduce")
     private String introduce;
     @TableField("is_borrow")
-    private int is_borrow;
+    private int isBorrow;
 }

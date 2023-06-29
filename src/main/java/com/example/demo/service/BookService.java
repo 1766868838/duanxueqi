@@ -84,7 +84,6 @@ public class BookService {
      * @return 是否成功
      */
     public boolean update(Book book){
-
         try {
             bookMapper.updateById(book);
             return true;

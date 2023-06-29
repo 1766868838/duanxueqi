@@ -81,6 +81,20 @@ public class UserController {
 
     @RequestMapping("update")
     public boolean updateUser(@RequestBody User user){
+        
         return userService.updateOne(user);
+    }
+
+    @RequestMapping("updateManager")
+    public boolean updateManager(int id , String name){
+        return userService.updateManager(id,name);
+    }
+
+    @RequestMapping("deleteById")
+    public boolean deleteById(Integer cardNum){
+
+        System.out.println(cardNum);
+        if(userService.deleteById(cardNum)) return true;
+        return false;
     }
 }

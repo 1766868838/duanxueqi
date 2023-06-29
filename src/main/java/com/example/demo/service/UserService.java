@@ -102,13 +102,39 @@ public class UserService {
 
     public boolean updateOne(User user){
         try {
-            UpdateWrapper<User> updateWrapper = new UpdateWrapper<>(user);
+            UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
             updateWrapper.eq("card_num", user.getCardNum().toString());
             userMapper.update(user, updateWrapper);
             return true;
         } catch (Exception e) {
-            // TODO: handle exception
+            e.getStackTrace();
             return false;
         }
+    }
+
+    public boolean updateManager(int id,String name){
+        try {
+            UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.eq("card_num", id);
+            User user = userMapper.selectOne(updateWrapper);
+            user.setUsername(name);
+            userMapper.updateById(user);
+            return true;
+        } catch (Exception e) {
+            e.getStackTrace();
+            return false;
+        }
+    }
+
+    public boolean deleteById(Integer id){
+        try {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("card_num", id);
+            userMapper.delete(queryWrapper);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }      
     }
 }
