@@ -4,14 +4,17 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.FastByteArrayOutputStream;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.demo.mapper.BorrowMapper;
 import com.example.demo.pojo.Borrow;
 import com.example.demo.pojo.UJoinB;
 import com.github.yulichang.query.MPJQueryWrapper;
 import com.example.demo.pojo.Book;
 import jakarta.annotation.Resource;
+import jakarta.validation.constraints.Null;
 
 @Service
 public class BorrowService {
@@ -52,7 +55,8 @@ public class BorrowService {
             MPJQueryWrapper<Borrow> wrapper = new MPJQueryWrapper<Borrow>().select("t.borrow_date")
                 .select("b.book_name","b.book_type","b.author","b.press")
                 .leftJoin("books b on t.book_id = b.bid")
-                .eq("card_num",card_num);
+                .eq("card_num",card_num)
+                .isNull("t.return_date");
 
             List<UJoinB> list = borrowMapper.selectJoinList(UJoinB.class,wrapper);
             return list;
@@ -79,10 +83,22 @@ public class BorrowService {
     public List<Borrow> selectBorrow(){
         try {
             List<Borrow> list = borrowMapper.selectList(null);
+            System.out.println(list);
             return list;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    public boolean returnBook(Borrow borrow){
+        try {
+            System.out.println(borrow);
+            borrowMapper.updateById(borrow);
+            return true;
+        } catch (Exception e) {
+            e.getStackTrace();
+            return false;
         }
     }
 }
