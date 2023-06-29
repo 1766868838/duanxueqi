@@ -24,7 +24,7 @@ public class LoginController {
      * @return
      */
     @RequestMapping("/login")
-    public User login(double card_num,String password,int identity_type){
+    public User login(String card_num,String password,int identity_type){
         try {
             return loginService.login(card_num, password,identity_type);
         } catch (Exception e) {

@@ -4,17 +4,12 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.util.FastByteArrayOutputStream;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.example.demo.mapper.BorrowMapper;
 import com.example.demo.pojo.Borrow;
 import com.example.demo.pojo.UJoinB;
 import com.github.yulichang.query.MPJQueryWrapper;
-import com.example.demo.pojo.Book;
 import jakarta.annotation.Resource;
-import jakarta.validation.constraints.Null;
 
 @Service
 public class BorrowService {

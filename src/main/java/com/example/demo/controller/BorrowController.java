@@ -38,24 +38,39 @@ public class BorrowController {
 
     @RequestMapping("borrow")
     @ResponseBody
-    public User borrow(@RequestBody JSONObject body){
+    public int borrow(@RequestBody JSONObject body){
         try {
             System.out.println(body);
             JSONArray books = body.getJSONArray("book");
-            String cardName = body.getString("card_num");
+            String cardName = body.getString("cardNum");
+
+
+            
+            if(cardName.equals("2020212205258")){
+                return 3;
+            }
+
+            //借书超过上限
+            User user = userService.selectOne(cardName);
+            int canBorrow = user.getIdentity() * 5 + 10 - user.getBorrowing() - books.size();
+            System.out.println(canBorrow+"sdfsdfdsfdsfsdfsdfdsfsdfsdfsdfsdfsdf");
+            if(canBorrow < 0 ) return 2;
+
+            //可借书，调用借书服务
             Date date = new Date();
             Timestamp timestamp = new Timestamp(date.getTime());
             System.out.print(books.size());
+
             for(int i=0;i<books.size();i++) {
                 JSONObject book = books.getJSONObject(i);
-                borrowService.borrow(new Borrow(book.getString("book_name"),book.getInteger("id"),
+                borrowService.borrow(new Borrow(book.getString("bookName"),book.getInteger("id"),
                 cardName,timestamp));
                 System.out.println(books.getJSONObject(i).get("bID"));
             }  
-            return userService.selectOne(cardName);
+            return 1;
         } catch (Exception e) {
             e.getStackTrace();
-            return null;
+            return 0;
         }        
     }
 
@@ -79,12 +94,4 @@ public class BorrowController {
         if(borrowService.returnBook(borrow)) return userService.selectOne(borrow.getCardNum());
         return null;
     }
-
-    /* public boolean borrow(String book_name,int book_id,double card_num,String borrow_name,
-    String borrow_date,String return_date,String return_type){
-        Timestamp borrowDate = Timestamp.valueOf(borrow_date);
-        Timestamp returnDate = Timestamp.valueOf(return_date);
-        if(borrowService.borrow(book_name,book_id,card_num,borrow_name,borrowDate,returnDate,return_type)) return true;
-        return false;
-    } */
 }

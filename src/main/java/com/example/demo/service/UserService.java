@@ -90,7 +90,7 @@ public class UserService {
      */
     public List<User> selectManager(){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("identity_type",2);//等于2代表图书管理员
+        queryWrapper.ge("identity_type",2);//等于2代表图书管理员
         return userMapper.selectList(queryWrapper);
     }
 
@@ -126,7 +126,7 @@ public class UserService {
         }
     }
 
-    public boolean deleteById(Integer id){
+    public boolean deleteById(String id){
         try {
             QueryWrapper<User> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("card_num", id);

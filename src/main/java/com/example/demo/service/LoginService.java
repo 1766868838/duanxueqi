@@ -25,7 +25,7 @@ public class LoginService {
      * @param password
      * @return
      */
-    public User login(Double cardNum,String password,int identityType){
+    public User login(String cardNum,String password,int identityType){
         try {
             QueryWrapper<User> queryWrapper =  new QueryWrapper<>();
             queryWrapper.eq("card_num",cardNum);

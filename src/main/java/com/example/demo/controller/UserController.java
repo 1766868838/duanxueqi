@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.service.UserService;
+import com.example.demo.utils.PasswordToKey;
 import com.example.demo.pojo.User;
 
 import jakarta.annotation.Resource;
@@ -25,13 +26,6 @@ public class UserController {
      * @return
      */
     @RequestMapping("addReader")
-    /* public boolean addReader(String cardNum,String username,String password,String phoneNum,int gender){
-
-        if(userService.addReader(cardNum, username, password, phoneNum, gender)){
-            return true;
-        }
-        return false;
-    } */
     public boolean addReader(@RequestBody User user){
 
         if(userService.addReader(user)){
@@ -42,7 +36,6 @@ public class UserController {
 
     @RequestMapping("addManager")
     public boolean addManager(@RequestBody User user){
-
         if(userService.addReader(user)){
             return true;
         }
@@ -81,7 +74,7 @@ public class UserController {
 
     @RequestMapping("update")
     public boolean updateUser(@RequestBody User user){
-        
+        user.setPassword(PasswordToKey.main(user.getPassword()));
         return userService.updateOne(user);
     }
 
@@ -91,7 +84,7 @@ public class UserController {
     }
 
     @RequestMapping("deleteById")
-    public boolean deleteById(Integer cardNum){
+    public boolean deleteById(String cardNum){
 
         System.out.println(cardNum);
         if(userService.deleteById(cardNum)) return true;

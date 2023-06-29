@@ -91,25 +91,6 @@ public class BookController {
         }
     }
 
-
-    /* public boolean update(Integer id,String book_name,String book_type,
-    String author,float price,String language,String press,String publication_date,
-    String introduce,int is_borrow){
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date publicationDate;
-        try {
-            publicationDate = format.parse(publication_date);
-            if(bookService.update(id,book_name,book_type,author,price,language,press,publicationDate,introduce,is_borrow)){
-                return true;
-            }
-            return false;
-        } catch (ParseException e) {
-            e.printStackTrace();
-            return false;
-        }
-    } */
-
     /**
      * 查找所有图书控制类
      * @return List 图书列表

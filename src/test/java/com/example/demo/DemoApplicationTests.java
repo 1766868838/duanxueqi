@@ -5,12 +5,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.alibaba.fastjson.JSONObject;
 import com.example.demo.mapper.BorrowMapper;
-import com.example.demo.mapper.UserMapper;
 import com.example.demo.pojo.Borrow;
 import com.example.demo.pojo.UJoinB;
-import com.example.demo.pojo.User;
 import com.github.yulichang.query.MPJQueryWrapper;
 
 import jakarta.annotation.Resource;

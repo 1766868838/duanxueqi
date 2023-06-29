@@ -80,7 +80,7 @@ public class User implements Serializable{
     @TableField("college")
     private String college;
 
-    @TableField(value = "password")
+    @TableField("password")
     private String password;
 
     @TableField("phone_num")
