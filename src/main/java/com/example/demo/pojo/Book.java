@@ -25,7 +25,7 @@ import lombok.Data;
 @Data
 @TableName("books")
 public class Book {
-    @TableId("ID")
+    @TableId("BID")
     private Integer id;
     @TableField("book_name")
     private String book_name;

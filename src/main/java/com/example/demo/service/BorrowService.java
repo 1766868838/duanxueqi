@@ -19,7 +19,7 @@ public class BorrowService {
     @Resource
     private BorrowMapper borrowMapper;
 
-    public boolean borrow(String book_name,int book_id, double card_num, String borrow_name, Timestamp borrow_date, Timestamp return_date, String return_type){
+    public boolean borrow(String book_name,int book_id, String card_num, String borrow_name, Timestamp borrow_date, Timestamp return_date, String return_type){
         try {
             Borrow borrow = new Borrow(book_name,book_id,card_num,borrow_name,borrow_date,return_date,return_type);
             borrowMapper.insert(borrow);
@@ -45,15 +45,40 @@ public class BorrowService {
         }
     }
 
-    public List<UJoinB> selectBorrow(String card_num){
-        
+
+
+    public List<UJoinB> selectOneBorrow(String card_num){
         try {
             MPJQueryWrapper<Borrow> wrapper = new MPJQueryWrapper<Borrow>().select("t.borrow_date")
                 .select("b.book_name","b.book_type","b.author","b.press")
-                .leftJoin("books b on t.book_id = b.id")
+                .leftJoin("books b on t.book_id = b.bid")
                 .eq("card_num",card_num);
 
             List<UJoinB> list = borrowMapper.selectJoinList(UJoinB.class,wrapper);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /* public List<UJoinB> selectBorrow(){
+        try {
+            MPJQueryWrapper<Borrow> wrapper = new MPJQueryWrapper<Borrow>().select("t.borrow_date")
+                .select("b.book_name","b.book_type","b.author","b.press")
+                .leftJoin("books b on t.book_id = b.bid");
+
+            List<UJoinB> list = borrowMapper.selectJoinList(UJoinB.class,wrapper);
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    } */
+
+    public List<Borrow> selectBorrow(){
+        try {
+            List<Borrow> list = borrowMapper.selectList(null);
             return list;
         } catch (Exception e) {
             e.printStackTrace();

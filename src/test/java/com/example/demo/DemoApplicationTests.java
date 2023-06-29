@@ -5,6 +5,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.mapper.BorrowMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.pojo.Borrow;
@@ -30,6 +31,11 @@ class DemoApplicationTests {
 		List<UJoinB> list = borrowMapper.selectJoinList(UJoinB.class,wrapper);
 		
 		System.out.println(list);
+	}
+
+	@Test
+	void test(){
+		
 	}
 
 }

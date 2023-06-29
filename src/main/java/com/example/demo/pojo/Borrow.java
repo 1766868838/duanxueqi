@@ -27,9 +27,9 @@ public class Borrow {
     @TableField("book_name")
     private String book_name;
     @TableField("book_id")
-    private int book_id;
+    private Integer book_id;
     @TableField("card_num")
-    private double card_num;
+    private String card_num;
     @TableField("borrow_name")
     private String borrow_name;
     @TableField("borrow_date")
@@ -39,8 +39,9 @@ public class Borrow {
     @TableField("return_type")
     private String return_type;
 
-    public Borrow(String book_name,int book_id ,double card_num, String borrow_name, Timestamp borrow_date,
+    public Borrow(Integer id,String book_name,Integer book_id ,String card_num, String borrow_name, Timestamp borrow_date,
             Timestamp return_date, String return_type) {
+        this.id = id;
         this.book_name = book_name;
         this.book_id = book_id;
         this.card_num = card_num;
@@ -50,4 +51,21 @@ public class Borrow {
         this.return_type = return_type;
     }
 
+
+    public Borrow(String book_name,int book_id ,String card_num, String borrow_name, Timestamp borrow_date,
+            Timestamp return_date, String return_type) {
+        this.book_name = book_name;
+        this.book_id = book_id;
+        this.card_num = card_num;
+        this.borrow_name = borrow_name;
+        this.borrow_date = borrow_date;
+        this.return_date = return_date;
+        this.return_type = return_type;
+    }
+    public Borrow(String book_name,int book_id ,String card_num, Timestamp borrow_date) {
+        this.book_name = book_name;
+        this.book_id = book_id;
+        this.card_num = card_num;
+        this.borrow_date = borrow_date;
+    }
 }

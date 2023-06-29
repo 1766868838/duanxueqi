@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import lombok.Data;
 
 /**
- * 读者实体类
+ * 读者借阅
  * 
  */
 @Data
