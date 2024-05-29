@@ -23,7 +23,7 @@ public class UserController {
 
     /**
      * 添加读者
-     * @return
+     * @return 结果标记
      */
     @RequestMapping("addReader")
     public boolean addReader(@RequestBody User user){
@@ -38,6 +38,7 @@ public class UserController {
     public boolean addManager(@RequestBody User user){
         System.out.println("sss");
         System.out.println("iho");
+        user.setBorrowing(1000);
         if(userService.addReader(user)){
             return true;
         }
