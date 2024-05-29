@@ -34,11 +34,13 @@ public class UserController {
         return false;
     }
 
+    /**
+     * 添加管理员
+     * @param user 用户
+     * @return 结果
+     */
     @RequestMapping("addManager")
     public boolean addManager(@RequestBody User user){
-        System.out.println("sss");
-        System.out.println("iho");
-        user.setBorrowing(1000);
         if(userService.addReader(user)){
             return true;
         }
