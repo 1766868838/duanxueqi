@@ -36,6 +36,8 @@ public class UserController {
 
     @RequestMapping("addManager")
     public boolean addManager(@RequestBody User user){
+        System.out.println("sss");
+        System.out.println("iho");
         if(userService.addReader(user)){
             return true;
         }
